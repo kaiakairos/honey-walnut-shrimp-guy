@@ -40,15 +40,27 @@ var respawnPoint :Vector2 = Vector2.ZERO
 var dead :bool = false
 @onready var gibScene :PackedScene = load("res://object_scenes/gib/gib.tscn")
 
+var dieTimer :float = 0.0
+
 func _ready() -> void:
 	Global.player = self
 	respawnPoint = global_position
 
 func _process(delta: float) -> void:
 	
+	
+	
 	if dead:
 		lerpWingsSpinning(delta)
 		return
+	
+	if Input.is_action_pressed("blowup"):
+		dieTimer += delta
+		if dieTimer > 1.0:
+			die()
+			return
+	else:
+		dieTimer = 0.0
 	
 	lerpScale(delta)
 	

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c1vnu1ukhg1m" path="res://object_scenes/smile/srpite.png" id="1_052sx"]
 [ext_resource type="Script" uid="uid://c7rwm344h1i3l" path="res://object_scenes/smile/smile.gd" id="1_hvc1k"]
+[ext_resource type="AudioStream" uid="uid://cmamt3cln2y5e" path="res://sound/yay.ogg" id="3_faoqn"]
 
 [sub_resource type="Curve" id="Curve_hvc1k"]
 _data = [Vector2(0, 0), 0.0, 5.980139, 0, 0, Vector2(0.1317934, 0.9917357), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.3993822, 0.0, 0, 0]
@@ -47,5 +48,9 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1742362365]
 shape = SubResource("CircleShape2D_hvc1k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2047773174]
+stream = ExtResource("3_faoqn")
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
