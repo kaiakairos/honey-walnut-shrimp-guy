@@ -153,7 +153,6 @@ func movement(delta:float,isOnFloor:bool) -> float:
 		#print("offisafen")
 	
 	if isOnFloor and roundi(dir) == 0:
-		print(dir)
 		properAccel = GROUNDEDDECEL
 	elif isOnFloor and roundi(dir) != 0:
 		pass

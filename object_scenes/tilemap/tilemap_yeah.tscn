@@ -32,6 +32,8 @@ texture = ExtResource("1_tuflp")
 0:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, 4, -8, 8, 8, 8, 8, -8, 4, -8, 4, 4)
 3:1/0 = 0
 3:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, -4, 8, -4, -8)
+0:3/0 = 0
+0:3/0/z_index = -6
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c06ow"]
 scenes/1/scene = ExtResource("2_2ugey")
