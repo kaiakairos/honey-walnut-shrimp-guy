@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bgm2ymwv2yo8n"]
+
+[ext_resource type="Texture2D" uid="uid://d4ixvdd23o08q" path="res://object_scenes/tilemap/tiles.png" id="1_tuflp"]
+[ext_resource type="PackedScene" uid="uid://q3hthbo1jbri" path="res://object_scenes/checkpoint/flag.tscn" id="2_2ugey"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ugey"]
+texture = ExtResource("1_tuflp")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+1:0/0 = 0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0)
+1:0/0/physics_layer_1/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 0, 8, 0, 8, -8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, -8, 8, 8, 8, 8, 0)
+0:1/0 = 0
+0:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, 8, -8, 4, 8, 4, 8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(4, -8, 4, 8, 8, 8, 8, -8)
+2:1/0 = 0
+2:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 8, -4, 8, -8)
+3:2/0 = 0
+3:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, 4, -4, 4, -4, -8)
+2:2/0 = 0
+2:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, -4, 8, -4, -4, 8, -4, 8, -8)
+1:2/0 = 0
+1:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 4, -4, 4, 8, 8, 8, 8, -8)
+0:2/0 = 0
+0:2/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, 4, -8, 8, 8, 8, 8, -8, 4, -8, 4, 4)
+3:1/0 = 0
+3:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, -4, 8, -4, -8)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c06ow"]
+scenes/1/scene = ExtResource("2_2ugey")
+
+[sub_resource type="TileSet" id="TileSet_c06ow"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 2
+physics_layer_2/collision_layer = 16
+physics_layer_2/collision_mask = 16
+sources/0 = SubResource("TileSetAtlasSource_2ugey")
+sources/1 = SubResource("TileSetScenesCollectionSource_c06ow")
+
+[node name="TilemapYEAH" type="TileMapLayer" unique_id=935844609]
+tile_set = SubResource("TileSet_c06ow")

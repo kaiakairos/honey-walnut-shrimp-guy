@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://q3hthbo1jbri"]
+
+[ext_resource type="Texture2D" uid="uid://b520nyqr3b57b" path="res://object_scenes/checkpoint/flag.png" id="1_0vqsc"]
+[ext_resource type="Script" uid="uid://b1pqfiyjwac3q" path="res://object_scenes/checkpoint/flag.gd" id="1_oes8y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oes8y"]
+size = Vector2(27, 51)
+
+[sub_resource type="Curve" id="Curve_oes8y"]
+_data = [Vector2(0, 0), 0.0, 11.401147, 0, 0, Vector2(0.2012195, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.220272, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_dadli"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Flag" type="Node2D" unique_id=595897667]
+script = ExtResource("1_oes8y")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=932050629]
+position = Vector2(-4, 8)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1990293707]
+position = Vector2(-0.5, -25.5)
+shape = SubResource("RectangleShape2D_oes8y")
+
+[node name="Flag" type="Sprite2D" parent="." unique_id=1111893507]
+position = Vector2(-16, -40)
+texture = ExtResource("1_0vqsc")
+centered = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2043065751]
+position = Vector2(-1, -26)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 500)
+initial_velocity_min = 87.72
+initial_velocity_max = 204.68
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_min = 4.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_oes8y")
+color = Color(0.32943764, 0.48744625, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_dadli")

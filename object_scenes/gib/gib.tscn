@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dktdw7y5lm8mj"]
+
+[ext_resource type="Texture2D" uid="uid://dg2hvecayr7jd" path="res://object_scenes/player/gib.png" id="1_0o6xt"]
+[ext_resource type="Script" uid="uid://d25n8ilx8lip4" path="res://object_scenes/gib/gib.gd" id="1_7b5j6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7b5j6"]
+radius = 3.0
+
+[node name="Gib" type="CharacterBody2D" unique_id=784887390]
+collision_layer = 32
+collision_mask = 35
+script = ExtResource("1_7b5j6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1601137081]
+shape = SubResource("CircleShape2D_7b5j6")
+
+[node name="Gib" type="Sprite2D" parent="." unique_id=1223041113]
+texture = ExtResource("1_0o6xt")
