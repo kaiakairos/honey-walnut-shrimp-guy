@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ccmauwa0ij5pd"]
+
+[ext_resource type="Texture2D" uid="uid://dx8lu0lcto0u4" path="res://object_scenes/honeywalnutshrimp/sprite.png" id="1_os78i"]
+[ext_resource type="Script" uid="uid://dspfs2rvv6ftx" path="res://object_scenes/honeywalnutshrimp/shrimp.gd" id="1_vv3ky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vv3ky"]
+size = Vector2(32, 32)
+
+[node name="shrimp" type="Node2D" unique_id=1718832174]
+script = ExtResource("1_vv3ky")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=249163429]
+texture = ExtResource("1_os78i")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=71042421]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=684749843]
+shape = SubResource("RectangleShape2D_vv3ky")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

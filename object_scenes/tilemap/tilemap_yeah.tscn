@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://d4ixvdd23o08q" path="res://object_scenes/tilemap/tiles.png" id="1_tuflp"]
 [ext_resource type="PackedScene" uid="uid://q3hthbo1jbri" path="res://object_scenes/checkpoint/flag.tscn" id="2_2ugey"]
+[ext_resource type="PackedScene" uid="uid://ccmauwa0ij5pd" path="res://object_scenes/honeywalnutshrimp/shrimp.tscn" id="3_c06ow"]
+[ext_resource type="PackedScene" uid="uid://ct7fno15jhe2d" path="res://object_scenes/smile/smile.tscn" id="4_yeu7q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ugey"]
 texture = ExtResource("1_tuflp")
@@ -33,6 +35,8 @@ texture = ExtResource("1_tuflp")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c06ow"]
 scenes/1/scene = ExtResource("2_2ugey")
+scenes/2/scene = ExtResource("3_c06ow")
+scenes/3/scene = ExtResource("4_yeu7q")
 
 [sub_resource type="TileSet" id="TileSet_c06ow"]
 physics_layer_0/collision_layer = 1

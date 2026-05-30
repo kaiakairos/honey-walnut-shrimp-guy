@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dnpb8vem8p261" path="res://object_scenes/player/glideanim.png" id="3_airh8"]
 [ext_resource type="Texture2D" uid="uid://ctithgxlhnt60" path="res://object_scenes/player/hurtanim.png" id="4_s2p7l"]
 [ext_resource type="Script" uid="uid://bkksdtbpaxttt" path="res://object_scenes/player/thisCoolCamera.gd" id="6_3o8n5"]
+[ext_resource type="AudioStream" uid="uid://3asiwg1ny67e" path="res://sound/spring.ogg" id="7_gry15"]
+[ext_resource type="AudioStream" uid="uid://di1r08c7bjnox" path="res://sound/hop.ogg" id="8_feo5d"]
+[ext_resource type="AudioStream" uid="uid://cwga5nw7m2rir" path="res://sound/ooph.ogg" id="9_4eg0y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_adcoq"]
 atlas = ExtResource("2_1gb37")
@@ -459,6 +462,10 @@ process_mode = 3
 anchor_mode = 0
 script = ExtResource("6_3o8n5")
 
+[node name="Label" type="Label" parent="Camera2D" unique_id=2009840730]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1176011548]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_tbdem")
@@ -478,6 +485,18 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoint" unique_id=1980652092]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_3o8n5")
+
+[node name="spring" type="AudioStreamPlayer" parent="." unique_id=1752719267]
+stream = ExtResource("7_gry15")
+volume_db = -16.0
+
+[node name="flap" type="AudioStreamPlayer" parent="." unique_id=872635055]
+stream = ExtResource("8_feo5d")
+volume_db = -35.11
+
+[node name="ough" type="AudioStreamPlayer" parent="." unique_id=1989995485]
+stream = ExtResource("9_4eg0y")
+volume_db = -16.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="checkpoint" to="." method="_on_checkpoint_body_entered"]

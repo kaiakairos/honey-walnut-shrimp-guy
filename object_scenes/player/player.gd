@@ -24,7 +24,7 @@ var lastFloorRemembered : float = 0.0
 var duckLastFrame :bool = false
 var isDucking :bool = false
 
-var DUCKSPEEDBOOST :float = 6.0
+var DUCKSPEEDBOOST :float = 4.0
 
 var amountOfFlaps :int = 1
 const FLAPRESETAMOUNT :int = 6
@@ -41,6 +41,7 @@ var dead :bool = false
 @onready var gibScene :PackedScene = load("res://object_scenes/gib/gib.tscn")
 
 func _ready() -> void:
+	Global.player = self
 	respawnPoint = global_position
 
 func _process(delta: float) -> void:
@@ -110,6 +111,9 @@ func movement(delta:float,isOnFloor:bool) -> float:
 		position.y = lastFloorRemembered
 		jumpBuffer = -1.0
 		setScale(Vector2(0.6,1.4))
+		
+		$spring.play()
+		
 	elif jumpBuffer > 0.0 and amountOfFlaps > 0:
 		amountOfFlaps -= 1
 		updateFlapCount()
@@ -118,6 +122,9 @@ func movement(delta:float,isOnFloor:bool) -> float:
 		$AnimationPlayer.stop(true)
 		$AnimationPlayer.play("littleJump")
 		setScale(Vector2(0.75,1.25))
+		
+		$flap.play()
+		
 	elif Input.is_action_pressed("jump") and !isOnFloor and amountOfFlaps > 0:
 		velocity.y = min(velocity.y,60.0)
 	
@@ -191,12 +198,15 @@ func movement(delta:float,isOnFloor:bool) -> float:
 			velocity.y = velSave.y * -0.8
 			takingFallDamage = true
 			setScale(Vector2(0.7,1.2)) # bounce
+			$ough.play()
+			$spring.play()
 		else:
 			hurtFromFall = true
 			takingFallDamage = false
 			setScale(Vector2(1.4,0.6))
 			sprite.offset = Vector2(0.0,-10.0)
 			sprite.position = Vector2(0.0,6.0)
+			$ough.play()
 	
 	return dir
 
@@ -213,8 +223,8 @@ func getLerpDeltaTimed(delta:float,typical:float) -> float:
 	return 1.0 - pow(2.0,(-delta/value))
 
 func doCameraPosition() -> void:
-	$Camera2D.global_position = cameraPosition * Vector2i(640,640)
-	var worldPosition :Vector2i = Vector2i(global_position / 640.0)
+	$Camera2D.global_position = cameraPosition * Vector2i(640,480)
+	var worldPosition :Vector2i = Vector2i(global_position.x / 640.0,global_position.y / 480.0)
 	if global_position.x < 0:
 		worldPosition.x -= 1
 	if global_position.y < 0:
@@ -276,6 +286,9 @@ func processAnimation(delta:float,isOnFloor:bool,dir:float) -> void:
 
 
 func lerpWingsIdle(delta:float) -> void:
+	#lerpWingsSpinning(delta)
+	#return
+	
 	wingSprite1.position = lerp(wingSprite1.position,Vector2(-4.0,-6.0),getLerpDeltaTimed(delta,0.2))
 	wingSprite1.scale = lerp(wingSprite1.scale,Vector2(0.575,0.24),getLerpDeltaTimed(delta,0.2))
 	wingSprite1.rotation = lerp_angle(wingSprite1.rotation,deg_to_rad(-50.4),getLerpDeltaTimed(delta,0.2))
@@ -341,6 +354,8 @@ func setScale(sca:Vector2) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if takingFallDamage:
+		return
 	die()
 
 

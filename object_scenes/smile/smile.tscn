@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ct7fno15jhe2d"]
+
+[ext_resource type="Texture2D" uid="uid://c1vnu1ukhg1m" path="res://object_scenes/smile/srpite.png" id="1_052sx"]
+[ext_resource type="Script" uid="uid://c7rwm344h1i3l" path="res://object_scenes/smile/smile.gd" id="1_hvc1k"]
+
+[sub_resource type="Curve" id="Curve_hvc1k"]
+_data = [Vector2(0, 0), 0.0, 5.980139, 0, 0, Vector2(0.1317934, 0.9917357), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.3993822, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_faoqn"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvc1k"]
+radius = 16.0
+
+[node name="Smile" type="Node2D" unique_id=575956670]
+script = ExtResource("1_hvc1k")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1219262215]
+amount = 16
+texture = ExtResource("1_052sx")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 63.23
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+orbit_velocity_min = -0.7
+damping_min = 100.0
+damping_max = 100.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.0
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_hvc1k")
+hue_variation_min = -0.03
+hue_variation_max = 0.12
+hue_variation_curve = SubResource("Curve_faoqn")
+
+[node name="Srpite" type="Sprite2D" parent="." unique_id=830561256]
+texture = ExtResource("1_052sx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=36653886]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1742362365]
+shape = SubResource("CircleShape2D_hvc1k")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
