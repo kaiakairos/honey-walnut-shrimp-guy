@@ -13,3 +13,8 @@ func _process(delta: float) -> void:
 		$Label3.text = "congrats you have found my glorious
 		HONEY WALKNUT SHRIMP. 
 		proceed to the left for your grand prize"
+
+
+func _on_stop_speedrun_timer_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.timerState = 2

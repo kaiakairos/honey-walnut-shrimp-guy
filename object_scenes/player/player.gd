@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var wingOrigin :Node2D
 @export var wingSprite1 :Sprite2D
@@ -42,13 +43,39 @@ var dead :bool = false
 
 var dieTimer :float = 0.0
 
+var timerState :int = 0 # 0: not started yet, 1: counting, 2: finished
+var timeInt :int = 0
+var timerStartOffset :int = 0
+var amountOfCameraDelays :int = 0
+
 func _ready() -> void:
 	Global.player = self
 	respawnPoint = global_position
 
 func _process(delta: float) -> void:
 	
+	if !hurtFromFall:
+		wingOrigin.scale.y = 1.0
 	
+	if Input.is_action_just_pressed("timerToggle"):
+		$Camera2D/timer.visible = !$Camera2D/timer.visible
+		print("Timer Visibility Toggled")
+	
+	if timerState == 0:
+		if Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
+			timerState = 1
+			timerStartOffset =  Time.get_ticks_msec()
+	
+	if timerState == 1:
+		timeInt = Time.get_ticks_msec() - timerStartOffset - (amountOfCameraDelays * 500)
+		var seconds :int = timeInt / 1000 # very fantastic code
+		$Camera2D/timer.text = str(seconds/60) + ":" + str(seconds%60) +"." + str(timeInt%1000)
+		if seconds%60 < 10:
+			$Camera2D/timer.text = str(seconds/60) + ":0" + str(seconds%60) +"." + str(timeInt%1000)
+		if $Camera2D/timer.text.length() == 8:
+			$Camera2D/timer.text = $Camera2D/timer.text.left(7)
+		elif $Camera2D/timer.text.length() == 6:
+			$Camera2D/timer.text = $Camera2D/timer.text + "0"
 	
 	if dead:
 		lerpWingsSpinning(delta)
@@ -246,7 +273,7 @@ func doCameraPosition() -> void:
 	
 	cameraPosition = worldPosition
 	$Camera2D.tweenCamera(cameraPosition)
-	
+	amountOfCameraDelays += 1
 	
 	
 
